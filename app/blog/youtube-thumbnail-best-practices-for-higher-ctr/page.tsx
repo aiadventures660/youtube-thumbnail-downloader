@@ -221,6 +221,7 @@ export default function YouTubeThumbnailBestPractices() {
 
           <h3>Product Reviews</h3>
           <p><strong>Best practices for review thumbnails:</strong></p>
+          <ul>
             <li>Show the product prominently</li>
             <li>Include star ratings or scores</li>
             <li>Use "vs" comparisons when relevant</li>

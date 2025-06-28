@@ -281,11 +281,11 @@ export default function RootLayout({
       </head>
       <body className={`font-inter antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <AppContent>{children}</AppContent>
+              <AppContent>{children}</AppContent>
           {/* Load analytics after page is interactive */}
           <Suspense fallback={null}>
-            <Analytics />
-          </Suspense>
+              <Analytics />
+            </Suspense>
         </ThemeProvider>
       </body>
     </html>

@@ -353,6 +353,7 @@ export default function FreeVsPaidYouTubeThumbnailTools() {
           </ul>
 
           <h3>Paid Tool Optimization</h3>
+          <ul>
             <li>Take advantage of free trials</li>
             <li>Use annual plans for discounts</li>
             <li>Learn keyboard shortcuts and advanced features</li>
