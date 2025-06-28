@@ -7,34 +7,44 @@ export function Analytics() {
     // Google Analytics 4
     const GA_MEASUREMENT_ID = "G-XXXXXXXXXX" // Replace with your actual GA4 measurement ID
 
-    // Load Google Analytics script
-    const script1 = document.createElement("script")
-    script1.async = true
-    script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
-    document.head.appendChild(script1)
+    // Load analytics after page is idle to avoid blocking render
+    const loadAnalytics = () => {
+      // Load Google Analytics script
+      const script1 = document.createElement("script")
+      script1.async = true
+      script1.defer = true
+      script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+      script1.onload = () => {
+        // Initialize Google Analytics after script loads
+        const script2 = document.createElement("script")
+        script2.innerHTML = `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}', {
+            page_title: document.title,
+            page_location: window.location.href
+          });
+        `
+        document.head.appendChild(script2)
+      }
+      document.head.appendChild(script1)
 
-    // Initialize Google Analytics
-    const script2 = document.createElement("script")
-    script2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${GA_MEASUREMENT_ID}', {
-        page_title: document.title,
-        page_location: window.location.href
-      });
-    `
-    document.head.appendChild(script2)
+      // Make gtag available globally
+      ;(window as any).gtag = () => {
+        ;(window as any).dataLayer.push(arguments)
+      }
+    }
 
-    // Make gtag available globally
-    ;(window as any).gtag = () => {
-      ;(window as any).dataLayer.push(arguments)
+    // Use requestIdleCallback if available, otherwise setTimeout
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadAnalytics, { timeout: 2000 })
+    } else {
+      setTimeout(loadAnalytics, 1000)
     }
 
     return () => {
-      // Cleanup scripts on unmount
-      document.head.removeChild(script1)
-      document.head.removeChild(script2)
+      // Cleanup is handled by browser when scripts are removed
     }
   }, [])
 

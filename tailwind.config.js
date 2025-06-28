@@ -74,4 +74,8 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  // Target modern browsers
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 }

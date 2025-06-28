@@ -23,48 +23,48 @@ export default function Blog() {
   const blogPosts = [
     {
       id: 1,
-      title: "Complete Guide: How to Download Thumbnail from YouTube in 2024",
+      title: "Complete Guide to YouTube Thumbnail Sizes in 2024",
       excerpt:
-        "Learn the best methods to download thumbnail from YouTube using our free thumbnail downloader. Step-by-step guide for HD quality thumbnails.",
-      date: "2024-01-15",
-      readTime: "5 min read",
-      slug: "download-thumbnail-from-youtube-guide",
+        "Master YouTube thumbnail dimensions, aspect ratios, and best practices for creating eye-catching thumbnails that boost click-through rates and engagement.",
+      date: "2024-01-20",
+      readTime: "8 min read",
+      slug: "complete-guide-to-youtube-thumbnail-sizes-2024",
     },
     {
       id: 2,
-      title: "YouTube Thumbnail Size Guide: Perfect Dimensions for 2024",
+      title: "Top 10 YouTube Thumbnail Downloaders Compared",
       excerpt:
-        "Discover the optimal YouTube thumbnail size, measurements, and best practices for creating eye-catching thumbnails that boost click-through rates.",
-      date: "2024-01-12",
-      readTime: "4 min read",
-      slug: "youtube-thumbnail-size-guide",
+        "Compare the best YouTube thumbnail downloader tools in 2024. Find the perfect tool for downloading high-quality thumbnails with our comprehensive comparison.",
+      date: "2024-01-18",
+      readTime: "10 min read",
+      slug: "top-10-youtube-thumbnail-downloaders-compared",
     },
     {
       id: 3,
-      title: "Free Keyword Research Tools: Google Keyword Planner vs Alternatives",
+      title: "How to Download YouTube Thumbnails: Step-by-Step Guide",
       excerpt:
-        "Compare the best free keyword research tools including Google Keyword Planner, Ahrefs keyword generator, and other keyword tools for SEO success.",
-      date: "2024-01-10",
-      readTime: "7 min read",
-      slug: "free-keyword-research-tools-comparison",
+        "Learn how to download thumbnail from YouTube using multiple methods. Complete step-by-step guide for beginners and advanced users.",
+      date: "2024-01-15",
+      readTime: "6 min read",
+      slug: "how-to-download-youtube-thumbnails-step-by-step-guide",
     },
     {
       id: 4,
-      title: "YouTube Tag Generator: Best Free Tools for Video Optimization",
+      title: "YouTube Thumbnail Best Practices for Higher CTR",
       excerpt:
-        "Discover the top YouTube tag generator tools to optimize your videos. Learn how to use free YouTube tag generators and tag creators effectively.",
-      date: "2024-01-08",
-      readTime: "6 min read",
-      slug: "youtube-tag-generator-tools",
+        "Discover proven YouTube thumbnail design strategies to increase click-through rates. Expert tips for creating thumbnails that convert viewers into clicks.",
+      date: "2024-01-12",
+      readTime: "9 min read",
+      slug: "youtube-thumbnail-best-practices-for-higher-ctr",
     },
     {
       id: 5,
-      title: "Thumbnail Maker Guide: Create Professional YouTube Thumbnails",
+      title: "Free vs Paid YouTube Thumbnail Tools",
       excerpt:
-        "Master thumbnail creation with the best thumbnail maker tools. Learn about YouTube thumbnail background design and thumb maker techniques.",
-      date: "2024-01-05",
-      readTime: "8 min read",
-      slug: "thumbnail-maker-guide",
+        "Compare free and paid YouTube thumbnail tools to find the best solution for your needs. Detailed analysis of features, limitations, and value for money.",
+      date: "2024-01-10",
+      readTime: "7 min read",
+      slug: "free-vs-paid-youtube-thumbnail-tools",
     },
   ]
 

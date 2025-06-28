@@ -7,11 +7,18 @@ Sitemap: https://youtube-thumbnail-downloader.com/sitemap.xml
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Block access to admin areas (if any)
+# Disallow admin areas (if any)
 Disallow: /admin/
 Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
 
-# Allow all other content
+# Allow important pages
 Allow: /about
-Allow: /privacy
 Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /blog/
+Allow: /blog/download-thumbnail-from-youtube-guide
+Allow: /blog/free-keyword-research-tools-comparison
+Allow: /blog/youtube-thumbnail-size-guide
