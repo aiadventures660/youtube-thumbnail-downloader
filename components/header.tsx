@@ -65,7 +65,8 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
+          style={{ overflowY: isMenuOpen ? 'auto' : 'hidden' }}
+          className={`md:hidden transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 w-full rounded-b-lg shadow-lg z-50 ${
             isMenuOpen ? "max-h-64 opacity-100 py-4" : "max-h-0 opacity-0 py-0 overflow-hidden"
           }`}
         >

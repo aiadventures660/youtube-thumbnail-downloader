@@ -1,7 +1,8 @@
 "use client"
 
 import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { Button } from "./ui/button"
 
 // Lazy load the ThumbnailDownloader component with improved loading strategy
 const ThumbnailDownloader = dynamic(() => import("./thumbnail-downloader"), {
@@ -25,6 +26,30 @@ function ThumbnailDownloaderWrapper() {
   )
 }
 
+function BookmarkButton() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const userAgent = typeof window !== 'undefined' ? window.navigator.userAgent : '';
+    setIsMobile(/Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(userAgent));
+  }, []);
+
+  if (!mounted) return null;
+  if (isMobile) return null;
+
+  const handleBookmark = () => {
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    alert(`Press ${isMac ? 'Cmd' : 'Ctrl'} + D to bookmark this site!`);
+  };
+  return (
+    <Button onClick={handleBookmark} variant="secondary" className="mb-4">
+      ⭐ Bookmark this site
+    </Button>
+  );
+}
+
 export default function Hero() {
   return (
     <section className="text-center py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
@@ -32,6 +57,9 @@ export default function Hero() {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight font-poppins">
           Download Thumbnail from <span className="text-red-600">YouTube</span>
         </h1>
+
+        {/* Bookmark Button */}
+        <BookmarkButton />
 
         {/* YouTube Thumbnail Downloader Card - positioned right after H1 */}
         <div className="mb-6">
