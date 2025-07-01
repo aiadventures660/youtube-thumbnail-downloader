@@ -21,14 +21,24 @@ export default function ContactForm() {
     e.preventDefault()
     setStatus("loading")
 
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus("success")
-      setFormData({ name: "", email: "", subject: "", message: "" })
-
-      // Reset status after 3 seconds
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      if (res.ok) {
+        setStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "" })
+        setTimeout(() => setStatus("idle"), 3000)
+      } else {
+        setStatus("error")
+        setTimeout(() => setStatus("idle"), 3000)
+      }
+    } catch (err) {
+      setStatus("error")
       setTimeout(() => setStatus("idle"), 3000)
-    }, 1000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
