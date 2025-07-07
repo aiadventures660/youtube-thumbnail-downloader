@@ -6,8 +6,8 @@ export function extractVideoId(url: string): string | null {
   const patterns = [
     // Standard YouTube URLs
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|m\.youtube\.com\/watch\?v=|youtube\.com\/watch\?.*&v=)([^&\n?#]+)/,
-    // YouTube Shorts
-    /youtube\.com\/shorts\/([^&\n?#]+)/,
+    // YouTube Shorts (with or without www)
+    /(?:youtube\.com|www\.youtube\.com)\/shorts\/([a-zA-Z0-9_-]{11})/,
     // YouTube Music
     /music\.youtube\.com\/watch\?v=([^&\n?#]+)/,
     // Direct video ID (11 characters)
@@ -26,6 +26,28 @@ export function extractVideoId(url: string): string | null {
   }
 
   return null
+}
+
+// Extract playlist ID from a YouTube playlist URL
+export function extractPlaylistId(url: string): string | null {
+  url = url.trim();
+  try {
+    const urlObj = new URL(url);
+    if (urlObj.searchParams.has("list")) {
+      const listId = urlObj.searchParams.get("list");
+      // Basic validation: playlist IDs are usually at least 13 chars, start with PL, UU, FL, RD, etc.
+      if (listId && /^[A-Za-z0-9_-]{13,}$/.test(listId)) {
+        return listId;
+      }
+    }
+  } catch (e) {
+    // Not a valid URL, ignore
+  }
+  // Also support direct playlist ID
+  if (/^(PL|UU|FL|RD)[A-Za-z0-9_-]{11,}$/.test(url)) {
+    return url;
+  }
+  return null;
 }
 
 export function getThumbnailUrls(videoId: string) {
@@ -79,4 +101,29 @@ export async function checkThumbnailExists(url: string): Promise<boolean> {
   } catch {
     return false
   }
+}
+
+// Extract channel ID from a YouTube channel URL or username URL
+export function extractChannelId(input: string): string | null {
+  input = input.trim();
+  // Direct channel ID
+  if (/^UC[a-zA-Z0-9_-]{22}$/.test(input)) {
+    return input;
+  }
+  // Channel URL
+  const channelMatch = input.match(/(?:youtube\.com|youtu\.be)\/channel\/([a-zA-Z0-9_-]{24})/);
+  if (channelMatch && channelMatch[1]) {
+    return channelMatch[1];
+  }
+  // Username URL
+  const userMatch = input.match(/(?:youtube\.com|youtu\.be)\/user\/([a-zA-Z0-9]+)/);
+  if (userMatch && userMatch[1]) {
+    return userMatch[1]; // Will need to resolve to channelId via API
+  }
+  // Handle custom URLs (youtube.com/c/CustomName or youtube.com/@handle)
+  const customMatch = input.match(/(?:youtube\.com|youtu\.be)\/(c|@)\/([a-zA-Z0-9_\-]+)/);
+  if (customMatch && customMatch[2]) {
+    return customMatch[2]; // Will need to resolve to channelId via API
+  }
+  return null;
 }

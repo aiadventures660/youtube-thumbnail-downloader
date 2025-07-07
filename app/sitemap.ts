@@ -1,63 +1,65 @@
 import { MetadataRoute } from 'next'
 
+const baseUrl = 'https://youtube-thumbnail-downloader.com'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: '/',
+      url: `${baseUrl}/`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1,
     },
     {
-      url: '/about',
+      url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: '/faq',
+      url: `${baseUrl}/faq`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: '/contact',
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: '/privacy',
+      url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
     },
     {
-      url: '/terms',
+      url: `${baseUrl}/terms`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
     },
     {
-      url: '/blog',
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: '/blog/download-thumbnail-from-youtube-guide',
+      url: `${baseUrl}/blog/download-thumbnail-from-youtube-guide`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: '/blog/free-keyword-research-tools-comparison',
+      url: `${baseUrl}/blog/free-keyword-research-tools-comparison`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: '/blog/youtube-thumbnail-size-guide',
+      url: `${baseUrl}/blog/youtube-thumbnail-size-guide`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
