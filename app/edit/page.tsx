@@ -1,12 +1,16 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
-import React from "react";
+import { Suspense } from "react";
+import type { FC } from "react";
 
 // Dynamically import the editor to avoid SSR issues
-const ThumbnailEditor = dynamic(() => import("../../components/thumbnail-editor"), { ssr: false });
+const ThumbnailEditor = dynamic<{ imageUrl: string }>(
+  () => import("../../components/thumbnail-editor"),
+  { ssr: false }
+);
 
-export default function EditPage() {
+const EditPageInner: FC = () => {
+  const { useSearchParams } = require("next/navigation");
   const searchParams = useSearchParams();
   const img = searchParams.get("img");
 
@@ -18,5 +22,13 @@ export default function EditPage() {
     <div className="fixed inset-0 w-full h-full bg-white dark:bg-gray-900 z-50">
       <ThumbnailEditor imageUrl={img} />
     </div>
+  );
+};
+
+export default function EditPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading editor...</div>}>
+      <EditPageInner />
+    </Suspense>
   );
 } 
